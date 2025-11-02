@@ -1,0 +1,225 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>GoGlow – Glow Foods</title>
+  <style>
+    body {
+      font-family: Arial;
+      background: #fffbe6;
+      margin: 0;
+    }
+
+    header {
+      background: #b2e2d9;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    nav a {
+      margin: 0 1rem;
+      text-decoration: none;
+      color: #007f7f;
+      font-weight: bold;
+    }
+
+    .section {
+      padding: 2rem;
+    }
+
+    .search-bar {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .search-bar input {
+      padding: 0.5rem;
+      width: 250px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    .grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      gap: 1.5rem;
+      padding: 1rem;
+    }
+
+    .card {
+      flex: 1 1 220px;
+      max-width: 300px;
+      background: #fff;
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .card img {
+      width: 100%;
+      border-radius: 5px;
+    }
+
+    .card h4 {
+      color: #cc9966;
+      margin: 0.5rem 0;
+    }
+
+    .card p {
+      font-size: 0.9rem;
+      margin: 0.2rem 0;
+    }
+
+    .card span {
+      font-weight: bold;
+      color: #cc9966;
+    }
+
+    .card button {
+      margin-top: 0.5rem;
+      background: #cc9966;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .help-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #cc9966;
+      color: white;
+      font-size: 1.5rem;
+      padding: 0.5rem 1rem;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .help-box {
+      display: none;
+      position: fixed;
+      bottom: 80px;
+      right: 20px;
+      background: white;
+      border: 1px solid #ccc;
+      padding: 1rem;
+      width: 250px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>GoGlow – Glow Foods</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="skincare.html">Skincare</a>
+      <a href="bodycare.html">Body Care</a>
+      <a href="haircare.html">Hair Care</a>
+      <a href="food.html">Food</a>
+      <a href="checkout.html">Checkout</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="students_achievements.html">Achievements</a>
+    </nav>
+  </header>
+
+  <section class="section">
+    <div class="search-bar">
+      <input type="text" id="search" placeholder="Search glow foods..." onkeyup="filterProducts()" />
+    </div>
+
+    <div class="grid" id="product-grid">
+      <div class="card">
+        <img src="bar.jpg" alt="Protein Bar" />
+        <h4>Protein Bar</h4>
+        <p>Fuel your day with 15g of plant protein.</p>
+        <span>3.50BHD</span>
+        <button onclick="addToCart('Protein Bar', 3.50)">Add to Cart</button>
+      </div>
+
+      <div class="card">
+        <img src="vitamin.jpg" alt="Vitamin Gummies" />
+        <h4>Vitamin Gummies</h4>
+        <p>Delicious daily boost of vitamins A, C, and D.</p>
+        <span>4.25BHD</span>
+        <button onclick="addToCart('Vitamin Gummies', 4.25)">Add to Cart</button>
+      </div>
+
+      <div class="card">
+        <img src="drink.jpg" alt="Collagen Drink" />
+        <h4>Collagen Drink</h4>
+        <p>Supports glowing skin and strong nails.</p>
+        <span>11.75BHD</span>
+        <button onclick="addToCart('Collagen Drink', 11.75)">Add to Cart</button>
+      </div>
+
+      <div class="card">
+        <img src="green.jpg" alt="Green Snack Bites" />
+        <h4>Green Snack Bites</h4>
+        <p>Spinach, kale, and almond clusters for clean energy.</p>
+        <span>4.00BHD</span>
+        <button onclick="addToCart('Green Snack Bites', 4.00)">Add to Cart</button>
+      </div>
+
+      <div class="card">
+        <img src="powder.jpg" alt="Hydration Powder" />
+        <h4>Hydration Powder</h4>
+        <p>Electrolyte-rich mix for glowing hydration.</p>
+        <span>3.75BHD</span>
+        <button onclick="addToCart('Hydration Powder', 3.75)">Add to Cart</button>
+      </div>
+
+      <div class="card">
+        <img src="glow_cookie.jpg" alt="Glow Cookie" />
+        <h4>Glow Cookie</h4>
+        <p>Soft-baked cookie with collagen and biotin.</p>
+        <span>2.95BHD</span>
+        <button onclick="addToCart('Glow Cookie', 2.95)">Add to Cart</button>
+      </div>
+
+      <div class="card">
+        <img src="beauty_tea.jpg" alt="Beauty Tea" />
+        <h4>Beauty Tea</h4>
+        <p>Herbal blend with hibiscus and rose for inner glow.</p>
+        <span>3.25BHD</span>
+        <button onclick="addToCart('Beauty Tea', 3.25)">Add to Cart</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="help-button" onclick="toggleHelp()">❓</div>
+  <div class="help-box" id="help-box">
+    <p><strong>Need help?</strong></p>
+    <p>Click “Add to Cart” to save items. Visit the Checkout page to see your cart and complete your order.</p>
+  </div>
+
+  <script>
+    let cart = JSON.parse(localStorage.getItem("goglowCart")) || [];
+
+    function addToCart(name, price) {
+      cart.push({ name, price });
+      localStorage.setItem("goglowCart", JSON.stringify(cart));
+      alert(`${name} added to cart!`);
+    }
+
+    function toggleHelp() {
+      const helpBox = document.getElementById("help-box");
+      helpBox.style.display = helpBox.style.display === "none" ? "block" : "none";
+    }
+
+    function filterProducts() {
+      const input = document.getElementById("search").value.toLowerCase();
+      const cards = document.querySelectorAll(".card");
+      cards.forEach(card => {
+        const text = card.textContent.toLowerCase();
+        card.style.display = text.includes(input) ? "block" : "none";
+      });
+    }
+  </script>
+</body>
+</html>

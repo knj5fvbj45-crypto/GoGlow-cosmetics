@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>GoGlow – Hair Care</title>
+  <style>
+    body { font-family: Arial; background: #f0f8ff; margin: 0; }
+    header { background: #b2e2d9; text-align: center; padding: 2rem; }
+    nav a { margin: 0 1rem; text-decoration: none; color: #007f7f; font-weight: bold; }
+    .section { padding: 2rem; text-align: center; }
+    .search-bar { margin-bottom: 2rem; }
+    .search-bar input { padding: 0.5rem; width: 250px; border-radius: 5px; border: 1px solid #ccc; }
+    .grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; }
+    .card { background: #fff; padding: 1rem; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); width: 220px; text-align: left; }
+    .card img { width: 100%; border-radius: 5px; }
+    .card h4 { color: #3399cc; margin: 0.5rem 0; }
+    .card p { color: #010c12; font-size: 0.9rem; margin: 0.2rem 0; }
+    .card span { font-weight: bold; color: #3399cc; }
+    .card button { margin-top: 0.5rem; background: #3399cc; color: white; border: none; padding: 0.5rem 1rem; border-radius: 5px; cursor: pointer; }
+    .help-button { position: fixed; bottom: 20px; right: 20px; background: #3399cc; color: white; font-size: 1.5rem; padding: 0.5rem 1rem; border-radius: 50%; cursor: pointer; }
+    .help-box { display: none; position: fixed; bottom: 80px; right: 20px; background: white; border: 1px solid #ccc; padding: 1rem; width: 250px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>GoGlow – Hair Care</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="skincare.html">Skincare</a>
+      <a href="bodycare.html">Body Care</a>
+      <a href="haircare.html">Hair Care</a>
+      <a href="food.html">Food</a>
+      <a href="checkout.html">Checkout</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="students_achievements.html">Achievements</a>
+    </nav>
+  </header>
+
+  <section class="section">
+    <div class="search-bar">
+      <input type="text" id="search" placeholder="Search hair care..." onkeyup="filterProducts()" />
+    </div>
+
+    <div class="grid" id="product-grid">
+      <div class="card">
+        <img src="argan.jpg" alt="Argan Shampoo" />
+        <h4>Argan Shampoo</h4>
+        <p>Strengthens and smooths hair naturally.</p>
+        <span>11.00BHD</span>
+        <button onclick="addToCart('Argan Shampoo', 11.00)">Add to Cart</button>
+      </div>
+      <div class="card">
+        <img src="keratin.jpg" alt="Keratin Mask" />
+        <h4>Keratin Mask</h4>
+        <p>Deep repair for damaged hair.</p>
+        <span>13.50BHD</span>
+        <button onclick="addToCart('Keratin Mask', 13.50)">Add to Cart</button>
+      </div>
+      <div class="card">
+        <img src="curl.jpg" alt="Curl Cream" />
+        <h4>Curl Cream</h4>
+        <p>Defines curls with softness and bounce.</p>
+        <span>9.75BHD</span>
+        <button onclick="addToCart('Curl Cream', 9.75)">Add to Cart</button>
+      </div>
+  <div class="card">
+        <img src="gel.jpg" alt="Curl gel" />
+        <h4>Curl gel</h4>
+        <p>Defines and holds curls with softness and bounce.</p>
+        <span>12.75BHD</span>
+        <button onclick="addToCart('Curl gel', 12.75)">Add to Cart</button>
+      </div>
+ <div class="card">
+        <img src="wow.jpg" alt="hair gloss" />
+        <h4>hair gloss</h4>
+        <p> Anti-frizz treatment waterproofs your hair to stop frizz, even in the worst humidity.</p>
+        <span>31.75BHD</span>
+        <button onclick="addToCart('hair gloss', 31.75)">Add to Cart</button>
+      </div>
+ <div class="card">
+        <img src="heat.jpg" alt="heat protecting spray" />
+        <h4>heat protecting spray</h4>
+        <p> Beat The Heat Protecting Heat Spray.</p>
+        <span>11.36BHD</span>
+        <button onclick="addToCart('heat protecting spray', 11.36)">Add to Cart</button>
+      </div>
+ <div class="card">
+        <img src="skala1.jpg" alt="skala mais cachos" />
+        <h4>skala mais cachos<h4>
+        <p>  for hair type 3ABC - 2 IN 1 Conditioning Treatment Cream & Cream To Comb .</p>
+        <span>12.36BHD</span>
+        <button onclick="addToCart('skala mais cachos 12.36)">Add to Cart</button>
+      </div>
+  </div>
+  </section>
+
+  <div class="help-button" onclick="toggleHelp()">❓</div>
+  <div class="help-box" id="help-box">
+    <p><strong>Need help?</strong></p>
+    <p>Click “Add to Cart” to save items. Visit the Checkout page to see your cart and complete your order.</p>
+  </div>
+
+  <script>
+    let cart = JSON.parse(localStorage.getItem("goglowCart")) || [];
+
+    function addToCart(name, price) {
+      cart.push({ name, price });
+      localStorage.setItem("goglowCart", JSON.stringify(cart));
+      alert(`${name} added to cart!`);
+    }
+
+    function toggleHelp() {
+      const helpBox = document.getElementById("help-box");
+      helpBox.style.display = helpBox.style.display === "none" ? "block" : "none";
+    }
+
+    function filterProducts() {
+      const input = document.getElementById("search").value.toLowerCase();
+      const cards = document.querySelectorAll(".card");
+      cards.forEach(card => {
+        const text = card.textContent.toLowerCase();
+        card.style.display = text.includes(input) ? "block" : "none";
+      });
+    }
+  </script>
+</body>
+</html>

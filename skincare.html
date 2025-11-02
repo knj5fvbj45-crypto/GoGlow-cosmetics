@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+ <html lang="en">
+ <head> 
+<meta charset="UTF-8" /> 
+<title>GoGlow – Skincare</title> 
+<style> 
+body { font-family: Arial; background: #fff0f5; margin: 0; } 
+header { background: #b2e2d9; text-align: center; padding: 2rem; } 
+nav a { margin: 0 1rem; text-decoration: none; color: #007f7f; font-weight: bold; } 
+.section { padding: 2rem; text-align: center; } 
+.search-bar { margin-bottom: 2rem; }
+ .search-bar input { padding: 0.5rem; width: 250px; border-radius: 5px; border: 1px solid #ccc; }
+ .grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; } 
+.card { background: #fff; padding: 1rem; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); width: 220px; text-align: left; } 
+.card img { width: 100%; border-radius: 5px; } 
+.card h4 { color: #cc3366; margin: 0.5rem 0; } 
+.card p { font-size: 0.9rem; margin: 0.2rem 0; } 
+.card span { font-weight: bold; color: #cc3366; } 
+.card button { margin-top: 0.5rem; background: #cc3366; color: white; border: none; padding: 0.5rem 1rem; border-radius: 5px; cursor: pointer; } 
+.help-button { position: fixed; bottom: 20px; right: 20px; background: #cc3366; color: white; font-size: 1.5rem; padding: 0.5rem 1rem; border-radius: 50%; cursor: pointer; } 
+.help-box { display: none; position: fixed; bottom: 80px; right: 20px; background: white; border: 1px solid #ccc; padding: 1rem; width: 250px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
+ </style> 
+</head> 
+<body> 
+<header>
+ <h1>GoGlow – Skincare</h1>
+ <nav> 
+<a href="index.html">Home</a> 
+<a href="skincare.html">Skincare</a> 
+<a href="bodycare.html">Body Care</a> 
+<a href="haircare.html">Hair Care</a> 
+<a href="food.html">Food</a>
+<a href="checkout.html">Checkout</a> 
+<a href="about.html">About</a> 
+<a href="contact.html">Contact</a> 
+<a href="students_achievements.html">Achievements</a> 
+</nav> 
+</header>
+ <section class="section">
+ <div class="search-bar">
+ <input type="text" id="search" placeholder="Search skincare..." onkeyup="filterProducts()" /> 
+</div>
+ <div class="grid" id="product-grid">
+ <div class="card"> 
+<img src="cleanser.jpg" alt="Gentle Cleanser" />
+ <h4>Gentle Cleanser</h4>
+ <p>Soft foaming cleanser for daily use.</p> 
+<span>8.00BHD</span>
+ <button onclick="addToCart('Gentle Cleanser', 8.00)">Add to Cart</button>
+ </div> 
+<div class="card">
+ <img src="serum.jpg" alt="Glow Serum" />
+ <h4>Glow Serum</h4>
+ <p>Brightens and hydrates dull skin.</p> 
+<span>12.50BHD</span> 
+<button onclick="addToCart('Glow Serum', 12.50)">Add to Cart</button> 
+</div>
+ <div class="card">
+ <img src=" Moisturizer.jpg" alt="Hydrating Moisturizer" /> 
+<h4>Hydrating Moisturizer</h4>
+ <p>Locks in moisture for 24 hours.</p>
+ <span>10.00BHD</span> 
+<button onclick="addToCart('Hydrating Moisturizer', 10.00)">Add to Cart</button> 
+</div> 
+<div class="card">
+ <img src="glow recipe.jpg" alt="glow recipe" /> 
+<h4>glow recipe</h4>
+ <p>Lightly hydrates oily skin.</p>
+ <span>19.00BHD</span>
+ <button onclick="addToCart('glow recipe', 19.00)">Add to Cart</button> </div> 
+<div class="card"> 
+<img src="cetaphil.jpg" alt="cetaphil: acne cream" />
+ <h4>cetaphil: acne cream</h4> 
+<p> Gentle Clear Clarifying Acne Cream Cleanser with 2% Salicylic Acid.</p>
+ <span>13.00BHD</span>
+ <button onclick="addToCart('cetaphil; acne cream', 13.00)">Add to Cart</button>
+ </div> 
+<div class="card"> 
+<img src="niacinamide.jpg" alt="the original:niacinamide" /> 
+<h4>the original:niacinamide</h4> 
+<p>minimizes pores and removes blackheads.</p> 
+<span>23.00BHD</span> 
+<button onclick="addToCart('the original:niacinamide', 23.00)">Add to Cart</button>
+ </div> 
+<div class="card">
+ <img src="sunscream.jpg" alt="sunscream" /> 
+<h4>sunscream</h4> 
+<p>protects your skin against UV rays for 72 hours.</p> <span>7.00BHD</span> 
+<button onclick="addToCart('sunscream', 7.00)">Add to Cart</button> </div>
+
+
+ </div>
+ </section>
+ <div class="help-button"
+ onclick="toggleHelp()">❓</div> 
+<div class="help-box" id="help-box"> 
+<p><strong>Need help?</strong></p> 
+<p>Click “Add to Cart” to save items. Visit the Checkout page to see your cart and complete your order.</p>
+ </div>
+
+
+ <script>
+ let cart = 
+JSON.parse(localStorage.getItem("goglowCart")) || []; 
+function addToCart(name, price) {
+ cart.push({ name, price }); 
+localStorage.setItem("goglowCart", JSON.stringify(cart));
+ alert(`${name} added to cart!`);
+ } 
+
+function toggleHelp() { 
+const helpBox = document.getElementById("help-box"); helpBox.style.display = helpBox.style.display === "none" ? "block" : "none"; } 
+
+function filterProducts() {
+ const input =
+ document.getElementById("search").value.toLowerCase(); 
+const cards = document.querySelectorAll(".card");
+ cards.forEach(card => { 
+const text = card.textContent.toLowerCase(); 
+card.style.display = text.includes(input) ? "block" : "none"; 
+});
+ } 
+</script>
+ </body>
+ </html>
